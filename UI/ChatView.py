@@ -1,4 +1,4 @@
-import tkinter  as tk
+import tkinter as tk
 import pygubu
 import datetime
 from Bot import ChatBot as bot
@@ -30,7 +30,8 @@ class Application:
         message = self.etMessage.get()
         date = "[" + datetime.datetime.now().strftime("%H:%M:%S") + "] "
         self.textArea.insert(tk.END, date + message + "\n")
-        self.textArea.insert(tk.END, date + self.chatBot.response(message) + "\n\n")
+        self.textArea.insert(
+            tk.END, date + self.chatBot.response(message) + "\n\n")
         self.textArea.see(tk.END)
         self.etMessage.delete(0, tk.END)
 

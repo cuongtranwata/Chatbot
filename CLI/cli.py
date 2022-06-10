@@ -1,4 +1,4 @@
-from Bot import ChatBot as bot
+from Bot import chatBot as bot
 
 ob = bot.ChatBot.getBot()
 
