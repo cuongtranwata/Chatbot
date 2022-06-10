@@ -7,8 +7,11 @@ import tflearn
 import random
 import pickle
 
-from Bot import path
+import path
 import json
+
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
 
 stemmer = LancasterStemmer()
 with open(path.getJsonPath()) as json_data:
@@ -57,7 +60,7 @@ training = np.array(training)
 train_x = list(training[:, 0])
 train_y = list(training[:, 1])
 
-tf.reset_default_graph()
+ops.reset_default_graph()
 net = tflearn.input_data(shape=[None, len(train_x[0])])
 net = tflearn.fully_connected(net, 8)
 net = tflearn.fully_connected(net, 8)
@@ -65,7 +68,7 @@ net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
 net = tflearn.regression(net)
 
 model = tflearn.DNN(net, tensorboard_dir=path.getPath('train_logs'))
-model.fit(train_x, train_y, n_epoch=20000, batch_size=500, show_metric=True)
+model.fit(train_x, train_y, n_epoch=4000, batch_size=500, show_metric=True)
 model.save(path.getPath('model.tflearn'))
 
 
